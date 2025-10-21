@@ -30,6 +30,19 @@ load(file = str_c(raw_dir, data_file))
 
 ```
 
+### New Analysis
+
+This is a new section for the task. Also, from Assignment6 to clean data.
+
+```{r}
+gravier_clean_aug <- gravier |>
+  bind_cols() |>
+  as_tibble() |> 
+   mutate(y = case_when(y == "poor" ~ 1,
+                       y == "good" ~ 0)) |> 
+  relocate(early_metastasis = y)
+```
+
 ## Hannah Nørrelykke
 
 Just some code
