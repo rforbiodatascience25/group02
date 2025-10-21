@@ -32,6 +32,19 @@ load(file = str_c(raw_dir, data_file))
 
 ## Hannah Nørrelykke
 
+Just some code
+
+```{r}
+c <- 3
+1 + c
+```
+
 ## Mie He Larsen
 
 ## Raminta Jonauskaite
+
+This is a code for running tidyverse
+
+```{r}
+library(tidyverse)
+```
