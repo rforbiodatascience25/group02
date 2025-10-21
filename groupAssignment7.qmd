@@ -75,7 +75,7 @@ gravier_PCA |>
   scale_x_continuous(breaks = seq(0, 168, by = 10)) +
   scale_y_continuous(
     labels = scales::percent_format(),
-    expand = expansion(mult = c(0, 0.5))
+    expand = expansion(mult = c(0, 0.5)) 
   ) +
   theme_minimal_hgrid(12)
 ```
