@@ -69,3 +69,16 @@ This is a code for running tidyverse
 ```{r}
 library(tidyverse)
 ```
+
+## New analysis
+
+This is a code from previous exercises
+
+```{r}
+ggplot(mpg, aes(displ, hwy, color = drv)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(se = FALSE) +
+  ggrepel::geom_label_repel(data = label_info, aes(label = drive_type), size = 5, nudge_y = 2) +
+  theme(legend.position = "none")
+
+```
