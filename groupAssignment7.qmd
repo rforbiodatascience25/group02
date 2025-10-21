@@ -54,7 +54,7 @@ gravier_PCA <- gravier_clean_aug |>
 
 ## **Raminta Jonauskaite (s254123)**
 
-### HSDVVGF
+## The variance in data explained by each PC
 
 Next, we’ll create a plot showing how much variance each principal component explains. To do this, we extract the eigenvalues using `tidy()` with the argument `matrix = "eigenvalues"`.
 
