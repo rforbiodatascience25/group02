@@ -40,7 +40,7 @@ gravier_clean_aug <- gravier |>
   as_tibble() 
 ```
 
-## PCA 
+## PCA
 
 ```{r}
 gravier_PCA <- gravier_clean_aug |> 
