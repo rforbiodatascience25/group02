@@ -1,3 +1,33 @@
 # Group Assignment - Group 2
 
 # **Created by Anastasia Kampantai (s253724), Hannah Espelund Nørrelykke (s224972), Mie He Larsen (s224976), Raminta Jonauskaite (s254123)**
+
+## Load Libraries
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library("broom")
+library(cowplot)
+```
+
+## Load Data
+
+In the assignment we use the data from the paper "**A prognostic DNA signature for T1T2 node-negative breast cancer patients"** related to gene expression.
+
+```{r}
+raw_dir <- "data/_raw/"
+data_file <- "gravier.RData"
+data_loc <- "https://github.com/ramhiser/datamicroarray/raw/master/data/"
+if( !dir.exists(raw_dir) ){
+  dir.create(path = raw_dir)
+}
+if( !file.exists(str_c(raw_dir, data_file)) ){
+  download.file(
+    url = str_c(data_loc, data_file),
+    destfile = str_c(raw_dir, data_file))
+}
+
+load(file = str_c(raw_dir, data_file))
+```
