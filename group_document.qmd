@@ -52,6 +52,18 @@ c <- 3
 1 + c
 ```
 
+### New analysis
+
+Mean and sd for random data
+
+```{r}
+data_H <- rnorm(n = 100,
+                mean = 5,
+                sd = 3)
+mean(data_H)
+sd(data_H)
+```
+
 ## Mie He Larsen
 
 #### New feature
