@@ -18,3 +18,9 @@ c <- 3
 ## Mie He Larsen
 
 ## Raminta Jonauskaite
+
+This is a code for running tidyverse
+
+```{r}
+library(tidyverse)
+```
