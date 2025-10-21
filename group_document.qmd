@@ -10,4 +10,12 @@ editor: visual
 
 ## Mie He Larsen
 
+#### New feature
+
+```{r}
+x1 <- 4
+x2 <- 2
+x1 + x2
+```
+
 ## Raminta Jonauskaite
