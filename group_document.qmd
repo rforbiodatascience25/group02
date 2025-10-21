@@ -8,6 +8,13 @@ editor: visual
 
 ## Hannah Nørrelykke
 
+Just some code
+
+```{r}
+c <- 3
+1 + c
+```
+
 ## Mie He Larsen
 
 ## Raminta Jonauskaite
