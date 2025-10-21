@@ -76,4 +76,5 @@ gravier_PCA |>
 
 The plot indicates that most of the data’s variation is captured by the first few principal components, with PC1 alone explaining about 8%, and the remaining components contributing progressively less to the total variance.
 
+
 ## **Anastasia Kampantai (s253724)**
