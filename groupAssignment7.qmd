@@ -48,10 +48,10 @@ gravier_PCA <- gravier_clean_aug |>
   prcomp(scale = TRUE)
 ```
 
-## **Hannah Espelund Nørrelykke (s224972)**
-
-## **Anastasia Kampantai (s253724)**
-
 ## **Mie He Larsen (s224976)**
 
+## **Hannah Espelund Nørrelykke (s224972)**
+
 ## **Raminta Jonauskaite (s254123)**
+
+## **Anastasia Kampantai (s253724)**
