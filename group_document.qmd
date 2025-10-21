@@ -6,6 +6,30 @@ editor: visual
 
 ## Anastasia Kampantai
 
+This is some code from assignment 6, added for the completion of this task.
+
+Here is the code chunk for loading the gravier data.
+
+```{r}
+library(ggrepel)
+library(tidyverse)
+
+raw_dir <- "data/_raw/"
+data_file <- "gravier.RData"
+data_loc <- "https://github.com/ramhiser/datamicroarray/raw/master/data/"
+if( !dir.exists(raw_dir) ){
+  dir.create(path = raw_dir)
+}
+if( !file.exists(str_c(raw_dir, data_file)) ){
+  download.file(
+    url = str_c(data_loc, data_file),
+    destfile = str_c(raw_dir, data_file))
+}
+
+load(file = str_c(raw_dir, data_file))
+
+```
+
 ## Hannah Nørrelykke
 
 ## Mie He Larsen
