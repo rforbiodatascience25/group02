@@ -30,6 +30,7 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 }
 
 load(file = str_c(raw_dir, data_file))
+
 ```
 
 ## Clean Data
@@ -40,12 +41,13 @@ gravier_clean_aug <- gravier |>
   as_tibble() 
 ```
 
-## PCA 
+## PCA
 
 ```{r}
 gravier_PCA <- gravier_clean_aug |> 
   select(where(is.numeric)) |> 
   prcomp(scale = TRUE)
+
 ```
 
 ## **Hannah Espelund Nørrelykke (s224972)**
@@ -55,3 +57,27 @@ gravier_PCA <- gravier_clean_aug |>
 ## **Mie He Larsen (s224976)**
 
 ## **Raminta Jonauskaite (s254123)**
+
+### The variance explained by each PC
+
+Next, we’ll create a plot showing how much variance each principal component explains. To do this, we extract the eigenvalues using `tidy()` with the argument `matrix = "eigenvalues"`.
+
+```{r}
+gravier_PCA |> 
+tidy(matrix = "eigenvalues")
+```
+
+```{r}
+gravier_PCA |> 
+  tidy(matrix = "eigenvalues") |> 
+  ggplot(aes(PC, percent)) +
+  geom_col(fill = "#56B4E9", alpha = 0.8) +
+  scale_x_continuous(breaks = seq(0, 168, by = 10)) +
+  scale_y_continuous(
+    labels = scales::percent_format(),
+    expand = expansion(mult = c(0, 0.5))
+  ) +
+  theme_minimal_hgrid(12)
+```
+
+The plot indicates that most of the data’s variation is captured by the first few principal components, with PC1 alone explaining about 8%, and the remaining components contributing progressively less to the total variance.
