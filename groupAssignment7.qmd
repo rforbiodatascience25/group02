@@ -1,3 +1,103 @@
 # Group Assignment 7 - Group 2
 
+<<<<<<< HEAD
 ### **Created by Anastasia Kampantai (s253724), Hannah Espelund Nørrelykke (s224972), Mie He Larsen (s224976), Raminta Jonauskaite (s254123)**
+=======
+# **Created by Anastasia Kampantai (s253724), Hannah Espelund Nørrelykke (s224972), Mie He Larsen (s224976), Raminta Jonauskaite (s254123)**
+
+## Load Libraries
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library("broom")
+library(cowplot)
+library("ggrepel")
+```
+
+## Load Data
+
+In the assignment we use the data from the paper "**A prognostic DNA signature for T1T2 node-negative breast cancer patients"** related to gene expression.
+
+```{r}
+raw_dir <- "data/_raw/"
+data_file <- "gravier.RData"
+data_loc <- "https://github.com/ramhiser/datamicroarray/raw/master/data/"
+if( !dir.exists(raw_dir) ){
+  dir.create(path = raw_dir)
+}
+if( !file.exists(str_c(raw_dir, data_file)) ){
+  download.file(
+    url = str_c(data_loc, data_file),
+    destfile = str_c(raw_dir, data_file))
+}
+
+load(file = str_c(raw_dir, data_file))
+```
+
+## Clean Data
+
+```{r}
+gravier_clean_aug <- gravier |>
+  bind_cols() |>
+  as_tibble() 
+```
+
+## PCA
+
+```{r}
+gravier_PCA <- gravier_clean_aug |> 
+  select(where(is.numeric)) |> 
+  prcomp(scale = TRUE)
+```
+
+## **Mie He Larsen (s224976)**
+
+## **Hannah Espelund Nørrelykke (s224972)**
+
+For information to be clear from the plot 15 random genes are chosen
+
+```{r}
+set.seed(3)
+
+gravier_PCA |> 
+  tidy(matrix = "rotation") |> 
+  pivot_wider(names_from = "PC", 
+              names_prefix = "PC", 
+              values_from = "value") |>
+  slice_sample(n = 15) |> 
+  ggplot(aes(PC1, PC2)) +
+  geom_segment(xend = 0,
+               yend = 0,
+               alpha = 0.25) +
+  geom_text_repel(aes(label = column))
+```
+
+## **Raminta Jonauskaite (s254123)**
+
+### The variance in data explained by each PC
+
+Next, we’ll create a plot showing how much variance each principal component explains. To do this, we extract the eigenvalues using `tidy()` with the argument `matrix = "eigenvalues"`.
+
+```{r}
+gravier_PCA |> 
+tidy(matrix = "eigenvalues")
+```
+
+```{r}
+gravier_PCA |> 
+  tidy(matrix = "eigenvalues") |> 
+  ggplot(aes(PC, percent)) + 
+  geom_col(fill = "#56B4E9", alpha = 0.8) + 
+  scale_x_continuous(breaks = seq(0, 168, by = 10)) + 
+  scale_y_continuous( labels = scales::percent_format(), 
+                      expand = expansion(mult = c(0, 0.5)) ) + 
+  theme_minimal_hgrid(12)
+```
+
+The plot indicates that most of the data’s variation is captured by the first few principal components, with PC1 alone explaining about 8%, and the remaining components contributing progressively less to the total variance.
+
+
+## **Anastasia Kampantai (s253724)**
+>>>>>>> 7a3ffea422ae56cbca587aadd76019386c47e1da
