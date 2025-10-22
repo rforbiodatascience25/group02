@@ -48,7 +48,7 @@ gravier_clean_aug <- gravier |>
 
 ```{r}
 gravier_PCA <- gravier_clean_aug |> 
-  select(where(is.numeric)) |> 
+  select(!prognosis) |> 
   prcomp(scale = TRUE)
 ```
 
