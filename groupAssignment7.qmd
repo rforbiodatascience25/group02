@@ -40,7 +40,10 @@ load(file = str_c(raw_dir, data_file))
 ```{r}
 gravier_clean_aug <- gravier |>
   bind_cols() |>
-  as_tibble() 
+  as_tibble() |> 
+  mutate(y = case_when(y == "poor" ~ 1,
+                       y == "good" ~ 0)) |> 
+  relocate(prognosis = y)
 ```
 
 ## PCA
