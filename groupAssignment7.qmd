@@ -97,8 +97,6 @@ The plot indicates that most of the data’s variation is captured by the first 
 
 ## **Anastasia Kampantai (s253724)**
 
-\<\<\<\<\<\<\< HEAD
-
 Given the Gravier dataset has more than a hundred of genes, we will use a heatmap to visualize the PCA loadings. This plot will display the weight and direction of the relationship between each gene and the most important Principal Components (PCs).
 
 By visualizing the loadings as a heatmap, we can quickly identify the specific genes (features) that drive the primary sources of variation captured by the PCs, which is essential for biological interpretation.
