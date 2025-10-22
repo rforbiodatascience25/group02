@@ -20,7 +20,7 @@ library("ggrepel")
 In the assignment we use the data from the paper "**A prognostic DNA signature for T1T2 node-negative breast cancer patients"** related to gene expression.
 
 ```{r}
-raw_dir <- "data/_raw/"
+raw_dir <- "data/"
 data_file <- "gravier.RData"
 data_loc <- "https://github.com/ramhiser/datamicroarray/raw/master/data/"
 if( !dir.exists(raw_dir) ){
