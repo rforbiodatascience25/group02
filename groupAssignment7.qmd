@@ -95,5 +95,53 @@ gravier_PCA |>
 
 The plot indicates that most of the data’s variation is captured by the first few principal components, with PC1 alone explaining about 8%, and the remaining components contributing progressively less to the total variance.
 
-
 ## **Anastasia Kampantai (s253724)**
+
+Given the Gravier dataset has more than a hundred of genes, we will use a heatmap to visualize the PCA loadings. This plot will display the weight and direction of the relationship between each gene and the most important Principal Components (PCs).
+
+By visualizing the loadings as a heatmap, we can quickly identify the specific genes (features) that drive the primary sources of variation captured by the PCs, which is essential for biological interpretation.
+
+### Tidy Data
+
+We will need to fix the data first. One of the things we will do is to keep only the top 50 differintiated genes and the first 5 PCs.
+
+```{r}
+gravier_PCA_tidy <- gravier_PCA$rotation |>
+  tibble::as_tibble(rownames = "Gene") |>
+  select(Gene, PC1, PC2, PC3, PC4, PC5)
+
+top_genes <- gravier_PCA_tidy |>
+  rowwise() |>
+  mutate(Total_Abs_Loading = sum(abs(c_across(PC1:PC5)))) |>
+  ungroup() |>
+  arrange(desc(Total_Abs_Loading)) |>
+  slice_head(n = 50)
+
+top_gravier_PCA_tidy <- gravier_PCA_tidy |>
+  filter(Gene %in% top_genes$Gene) |> 
+    pivot_longer(
+    cols = -Gene,
+    names_to = "Principal_Component",
+    values_to = "Loading"
+  )
+```
+
+### Heatmap Plot
+
+```{r}
+top_gravier_PCA_tidy |> 
+  ggplot(aes(x = Principal_Component, y = Gene, fill = Loading)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0) +
+  labs(title = "Heatmap of PCA Loadings for Gene Expression",
+       subtitle = "Contribution of Genes to Top 5 Principal Components",
+       x = "Principal Component", 
+       y = NULL,
+       fill = "Loading Value") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"),
+        axis.text.y = element_text(size = 5, colour = "black"))
+```
+
+Based on heatmap we can notice that in PC1 and PC5 the same group of bottom half is down-regulated, while the same group of upper half is up-regulated. An interesting point here is that the upper half of PC5 has higher values of that of PC1, and the bottom half of PC1 has lower values of that of PC5. PC2 shows a uniformity with all genes being down-regulated with a high variety in their negative values. On the opposite side of PC2 is PC3, with almost all of genes being highly expressed. Finaly, we notice that almost the same group of genes being up-regulated in PC1 and PC5 show a tendency to low expression in PC4 and the down-regulated group of PC1 and PC5 seem up-regulated in PC4.
