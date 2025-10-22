@@ -1,8 +1,7 @@
 # Group Assignment 7 - Group 2
 
-<<<<<<< HEAD
-### **Created by Anastasia Kampantai (s253724), Hannah Espelund Nørrelykke (s224972), Mie He Larsen (s224976), Raminta Jonauskaite (s254123)**
-=======
+# \### **Created by Anastasia Kampantai (s253724), Hannah Espelund Nørrelykke (s224972), Mie He Larsen (s224976), Raminta Jonauskaite (s254123)**
+
 # **Created by Anastasia Kampantai (s253724), Hannah Espelund Nørrelykke (s224972), Mie He Larsen (s224976), Raminta Jonauskaite (s254123)**
 
 ## Load Libraries
@@ -54,6 +53,27 @@ gravier_PCA <- gravier_clean_aug |>
 
 ## **Mie He Larsen (s224976)**
 
+We use augment() to add PCA coordinates to the original data and color samples by prognosis. The plot shows how patients cluster along the first two principal components based on their gene expression.
+
+```{r}
+gravier_PCA |> 
+  augment(gravier_clean_aug) |>
+  ggplot(aes(.fittedPC1, .fittedPC2, color = prognosis)) + 
+  geom_point(size = 1.5, alpha = 0.8) +
+  scale_color_manual(
+    values = c("good" = "#2297E6", 
+               "poor" = "#FF69B4") 
+  ) +
+  labs(
+    title = "PCA of Breast Cancer Gene Expression",
+    x = "PC1",
+    y = "PC2",
+    color = "Prognosis"
+  ) +
+  theme_half_open(12) + background_grid()
+
+```
+
 ## **Hannah Espelund Nørrelykke (s224972)**
 
 For information to be clear from the plot 15 random genes are chosen
@@ -98,6 +118,4 @@ gravier_PCA |>
 
 The plot indicates that most of the data’s variation is captured by the first few principal components, with PC1 alone explaining about 8%, and the remaining components contributing progressively less to the total variance.
 
-
 ## **Anastasia Kampantai (s253724)**
->>>>>>> 7a3ffea422ae56cbca587aadd76019386c47e1da
