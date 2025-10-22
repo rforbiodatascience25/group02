@@ -61,6 +61,7 @@ We use augment() to add PCA coordinates to the original data and color samples b
 ```{r}
 gravier_PCA |> 
   augment(gravier_clean_aug) |>
+  mutate(prognosis=as.factor(prognosis)) |>
   ggplot(aes(.fittedPC1, .fittedPC2, color = prognosis)) + 
   geom_point(size = 1.5, alpha = 0.8) +
   scale_color_manual(
