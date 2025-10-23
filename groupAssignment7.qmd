@@ -86,6 +86,8 @@ ggplot(aes(.fittedPC1, .fittedPC2, color = prognosis)) +
 
 ## **Hannah Espelund Nørrelykke (s224972)**
 
+### Loadings plot
+
 For information to be clear from the plot 15 random genes are chosen
 
 ```{r}
@@ -100,9 +102,18 @@ gravier_PCA |>
   ggplot(aes(PC1, PC2)) +
   geom_segment(xend = 0,
                yend = 0,
+               arrow = arrow(ends = "first",
+                             length = unit(6, "pt")),
                alpha = 0.25) +
-  geom_text_repel(aes(label = column))
+  geom_text_repel(aes(label = column),
+                  color = "red",
+                  alpha = 0.75) +
+  labs(title = "Loadings plot",
+       subtitle = "15 random genes") +
+  theme_minimal_grid()
 ```
+
+On the loadings plot it can be seen that of the 15 random genes g11D09 is the only one that contributes positively to PC2. The genes that contribute most positively to PC1 are g7C02, g1int627 and g1int421. The genes that contribute most negatively to PC1 are g1CNS215, g1int108, and g1int1404. Unfortunately this can not be used to say something about their effect on prognosis because PC1 and PC2 don't separate good and poor prognosis as seen on the score plot above
 
 ## **Raminta Jonauskaite (s254123)**
 
