@@ -50,7 +50,7 @@ gravier_clean_aug <- gravier |>
   relocate(prognosis = y)
 ```
 
-## PCA
+## PCA on Data
 
 ```{r}
 gravier_PCA <- gravier_clean_aug |> 
@@ -58,7 +58,7 @@ gravier_PCA <- gravier_clean_aug |>
   prcomp(scale = TRUE)
 ```
 
-## **Mie He Larsen (s224976)**
+## **PCA Plot**
 
 We use augment() to add PCA coordinates to the original data and color samples by prognosis. The plot shows how patients cluster along the first two principal components based on their gene expression.
 
@@ -84,9 +84,7 @@ ggplot(aes(.fittedPC1, .fittedPC2, color = prognosis)) +
 
 ```
 
-## **Hannah Espelund Nørrelykke (s224972)**
-
-### Loadings plot
+## Loadings plot
 
 For information to be clear from the plot 15 random genes are chosen
 
@@ -115,9 +113,7 @@ gravier_PCA |>
 
 On the loadings plot it can be seen that of the 15 random genes g11D09 is the only one that contributes positively to PC2. The genes that contribute most positively to PC1 are g7C02, g1int627 and g1int421. The genes that contribute most negatively to PC1 are g1CNS215, g1int108, and g1int1404. Unfortunately this can not be used to say something about their effect on prognosis because PC1 and PC2 don't separate good and poor prognosis as seen on the score plot above
 
-## **Raminta Jonauskaite (s254123)**
-
-### The variance in data explained by each PC
+## The variance in data explained by each PC
 
 Next, we’ll create a plot showing how much variance each principal component explains. To do this, we extract the eigenvalues using `tidy()` with the argument `matrix = "eigenvalues"`.
 
@@ -139,7 +135,7 @@ gravier_PCA |>
 
 The plot indicates that most of the data’s variation is captured by the first few principal components, with PC1 alone explaining about 8%, and the remaining components contributing progressively less to the total variance.
 
-## **Anastasia Kampantai (s253724)**
+## **Heatmap Plot**
 
 Given the Gravier dataset has more than a hundred of genes, we will use a heatmap to visualize the PCA loadings. This plot will display the weight and direction of the relationship between each gene and the most important Principal Components (PCs).
 
@@ -169,8 +165,6 @@ top_gravier_PCA_tidy <- gravier_PCA_tidy |>
     values_to = "Loading"
   )
 ```
-
-### Heatmap Plot
 
 ```{r}
 top_gravier_PCA_tidy |> 
