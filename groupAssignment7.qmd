@@ -13,9 +13,9 @@ editor: visual
 ```{r}
 #| message: false
 
-library(tidyverse)
+library("tidyverse")
 library("broom")
-library(cowplot)
+library("cowplot")
 library("ggrepel")
 ```
 
